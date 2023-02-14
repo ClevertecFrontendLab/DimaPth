@@ -1,0 +1,178 @@
+.hWrap {
+    width: 100%;
+}
+.vWrap {
+    width: 190px;
+}
+
+/* vertical card */
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 190px;
+    height: 470px;
+    box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18), 0px 1px 5px rgba(191, 196, 201, 0.24);
+    border-radius: 10px;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    margin-left: 8px;
+}
+
+.image {
+    margin: 8px 8px 16px;
+}
+
+.ghost {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #A7A7A7;
+}
+
+.name {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.btn {
+    margin: 0 12px 16px 4px;
+}
+
+/* horizontal card */
+
+.hCard {
+    width: 100%;
+    display: flex;
+    box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18), 0px 1px 5px rgba(191, 196, 201, 0.24);
+    border-radius: 12px;
+    padding: 24px;
+    padding-left: 16px;
+}
+
+.hBody {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 16px;
+}
+
+.hName {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 32px;
+    margin-bottom: 8px;
+}
+
+.hAuthor {
+    color: #727272;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.hBtns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.hBtn {
+    width: 174px;
+}
+
+@media screen and (max-width: 1400px) {
+    .name {
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .ghost { 
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 18px;
+        color: #727272;
+    }
+
+    /* horizontal */
+    .hCard {
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+    .hName {
+        font-size: 24px;
+        line-height: 30px;
+    }
+    .hAuthor {
+        margin-bottom: 16px;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .vWrap {
+        width: 100%;
+    }
+    .card {
+        width: 100%;
+    }
+    .body {
+        margin-left: 16px;
+    }
+    .image {
+        margin: 8px auto 16px;
+    }
+    .name {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 18px;
+    }
+    .ghost {
+        font-weight: 400;
+    }
+    .btn {
+        margin: 0px 16px 16px 0;
+    }
+
+    /* horizontal */
+    
+    .hCard {
+        padding: 16px;
+        padding-left: 8px;
+    }
+    .hCard img {
+        width: 70px;
+        height: 100px;
+    }
+    .hBody {
+        margin-left: 8px;
+    }
+    .hName {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 18px;
+        margin-bottom: 3px;
+    }
+    .hAuthor {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
+        margin-bottom: 3px;
+    }
+    .hBtns {
+        flex-direction: column;
+        justify-content: unset;
+        align-items: unset;
+        margin-bottom: 0;
+    }
+    .hBtn {
+        width: 100%;
+        margin-top: 16px;
+    }
+}

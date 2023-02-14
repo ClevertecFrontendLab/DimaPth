@@ -1,0 +1,42 @@
+.footer {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    background-color: #BFC4C9;
+    width: 100%;
+    height: 1px;
+    top: 0;
+}
+
+.social {
+    display: flex;
+}
+
+.social a {
+    margin-right: 24px;
+}
+
+.social a:last-child {
+    margin-right: 0;
+}
+
+@media screen and (max-width: 760px) {
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .footer span {
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 20px;
+        padding: 0 40px;
+        margin-bottom: 16px;
+    }
+}

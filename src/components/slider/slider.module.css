@@ -1,0 +1,33 @@
+.wrap {
+    width: 445px;
+}
+.mySwiper {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+@media screen and (max-width: 1400px) {
+    .wrap {
+        width: 136px;
+    }
+    .mySwiper {
+        margin-bottom: 0;
+    }
+    .mySwiper img {
+        height: 192px;
+    }
+    .mySwiper2 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .wrap {
+        width: 188px;
+        margin: 0 auto 16px;
+    }
+    .mySwiper img {
+        height: unset;
+    }
+}
+  

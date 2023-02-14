@@ -1,0 +1,32 @@
+.primary {
+    width: 100%;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+    background: linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+    border-radius: 20px;
+    border: none;
+    padding: 11px 0;
+    color: #FFF;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.large {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    padding: 14px 0;
+    line-height: 150%;
+    border-radius: 30px;
+}
+
+@media screen and (max-width: 760px) {
+    .large {
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 18px;
+        padding: 11px 0;
+        border-radius: 20px;
+    }
+}

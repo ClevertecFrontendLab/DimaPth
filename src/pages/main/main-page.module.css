@@ -1,0 +1,179 @@
+.searchWrap .mobile {
+    display: none;
+}
+.fullWidth {
+    width: 100%;
+}
+
+
+/* default style for btns and input */
+.default {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    font-size: 14px;
+    line-height: 18px;
+    color: #A7A7A7;
+    border-radius: 30px;
+    box-shadow: 0px 2px 4px rgb(191 196 201 / 20%), 0px 3px 4px rgb(191 196 201 / 18%), 0px 1px 5px rgb(191 196 201 / 24%);
+    border: none;
+    overflow: hidden;
+}
+
+.navList {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+.searchWrap {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+.searchBar {
+    width: 350px;
+    padding: 10px 0;
+}    
+
+.searchIcon {
+    fill: #A7A7A7;
+    flex-shrink: 0;
+    margin-left: 16px;
+    margin-right: 8px;
+}
+
+.input {
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
+.input::placeholder {
+    color: #A7A7A7;
+}
+
+.closeIcon {
+    display: none;
+}
+
+.filterBtn {
+    padding: 10px 15px;
+}
+
+.filterIcon {
+    flex-shrink: 0;
+    margin-right: 8px;
+}
+
+.btns {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.viewBtn {
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+}
+
+.viewBtn svg {
+    fill: #A7A7A7;
+}
+
+.viewBtn:hover svg {
+    fill: #F83600;
+}
+
+.activeBtn {
+    background: linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+}
+
+.activeBtn svg {
+    fill: #fff;
+}
+
+.activeBtn:hover svg {
+    fill: #fff;
+}
+
+.cardList {
+    display: flex;
+    width: 825px;
+    flex-wrap: wrap;
+    gap: 24px 21.5px;
+}
+
+.horizontal {
+    gap: 16px;
+}
+
+@media screen and (max-width: 1400px) {
+    .navList {
+        margin-bottom: 24px;
+    }
+    .searchBar{
+        width: 274px;
+    }
+    .viewBtn {
+        width: 32px;
+        height: 32px;
+    }
+    .cardList {
+        width: 640px;
+        gap: 32px 35px;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .navList {
+        margin-bottom: 20px;
+    }
+    .searchWrap .mobile {
+        display: flex;
+    }
+    .searchWrap .desktop {
+        display: none;
+    }
+    .searchBar {
+        position: relative;
+        width: 32px;
+        padding: 8px 0;
+    }
+    .searchBar .input {
+        caret-color: #F83600;
+    }
+    .searchBar button {
+        display: flex;
+        align-items: center;
+    }
+    .searchBar.opened {
+        position: absolute;
+        width: 100%;
+        padding-left: 16px;
+    }
+    .closeIcon {
+        display: block;
+        margin-right: 12px;
+        flex-shrink: 0;
+    }
+    .searchIcon {
+        margin-left: 8px;
+    }
+    .searchIcon.opened {
+        display: none;
+    }
+    .filterBtn {
+        width: 32px;
+        height: 32px;
+        padding: 8px;
+    }
+    .cardList {
+        width: 100%;
+        gap: 16px 0;
+    }
+}

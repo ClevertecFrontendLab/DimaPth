@@ -1,0 +1,31 @@
+.swiper-slide-thumb-active {
+    border-radius: 3px;
+    border: 1px solid transparent;
+    border-image: linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+    border-image-slice: 1;
+}
+
+.swiper .swiper-pagination {
+    display: none;
+    position: static;
+    margin-top: 16px;
+}
+
+.swiper .swiper-pagination-bullet {
+    width: 7px;
+    height: 7px;
+    opacity: 1;
+    background: #BFC4C9;
+}
+
+.swiper .swiper-pagination-bullet-active {
+    width: 9px;
+    height: 9px;
+    background: #363636;
+}
+
+@media screen and (max-width: 1400px) {
+    .swiper .swiper-pagination {
+        display: block;
+    }
+}
