@@ -6,93 +6,21 @@ import {ReactComponent as CloseIcon} from '../../assets/close-icon.svg';
 import {ReactComponent as FilterIcon} from '../../assets/filter-icon.svg';
 import {ReactComponent as TileView} from '../../assets/tile-view.svg';
 import {ReactComponent as ListView} from '../../assets/list-view.svg';
-import BookImage from '../../assets/book-image.jpg';
 
 import { Card } from '../../components/card/card';
 
 import style from './main-page.module.css';
+import { useFetchAllBooksQuery } from '../../redux/books-api';
 
-const books = [
-    {
-        id: 1,
-        img: '', 
-        rating: 1, 
-        name: 'Грокаем алгоритмы. Иллюстрированное пособие для програ...', 
-        author: 'Адитья Бхаргава, 2019', 
-        isBooked: false 
-    },
-    {
-        id: 2,
-        img: BookImage, 
-        rating: 4, 
-        name: 'Грокаем алгоритмы. Иллюстрированное ', 
-        author: 'Адитья Бхаргава, 2019', 
-        isBooked: false 
-    },
-    {
-        id: 3,
-        img: BookImage, 
-        rating: 3, 
-        name: 'Грокаем алгоритмы', 
-        author: 'Адитья Бхаргава, 2019', 
-        isBooked: true 
-    },
-    {
-        id: 4,
-        img: BookImage, 
-        rating: 5, 
-        name: 'Грокаем алгоритмы. Иллюстрированное пособие для програ...', 
-        author: 'Адитья Бхаргава, 2019', 
-        isBooked: false 
-    },
-    {
-        id: 5,
-        img: BookImage, 
-        rating: 4, 
-        name: 'Грокаем алгоритмы. Иллюстрированное пособие для програ...', 
-        author: 'Адитья Бхаргава, Патрик Нимейер, 2019', 
-        isBooked: true 
-    },
-    {
-        id: 6,
-        img: '', 
-        rating: 1, 
-        name: 'Грокаем алгоритмы. Иллюстрированное', 
-        author: 'Адитья Бхаргава, 2019', 
-        isBooked: true 
-    },
-    {
-        id: 7,
-        img: BookImage, 
-        rating: 2, 
-        name: 'Грокаем алгоритмы.', 
-        author: 'Адитья Бхаргава, Патрик Нимейер, 2019', 
-        isBooked: false 
-    },
-    {
-        id: 8,
-        img: BookImage, 
-        rating: 0, 
-        name: 'Грокаем алгоритмы. Иллюстрированное пособие для програ...', 
-        author: 'Адитья Бхаргава, Патрик Нимейер, 2019', 
-        isBooked: false 
-    },
-    {
-        id: 9,
-        img: '', 
-        rating: 0, 
-        name: 'Грокаем алгоритмы. Иллюстрированное пособие для програ...', 
-        author: 'Адитья Бхаргава, 2019', 
-        isBooked: false 
-    },
-]
 
 export const MainPage: FC = () => {
-    const [view, setView] = useState('tile')
+    const {data: books, isLoading, isError, isSuccess} = useFetchAllBooksQuery()
+
+    const [view, setView] = useState<'tile' | 'list'>('tile')
     const [open, setOpen] = useState(false)
 
     return (
-    <section>
+    <section className={style.mainPage}>
             <div className={style.navList}>
                 <div className={style.searchWrap}>
                     <div 
@@ -137,17 +65,15 @@ export const MainPage: FC = () => {
                 </div>
             </div>
             <div className={cn(style.cardList, {[style.horizontal]: view === 'list'})}>
-                {books.map(book => (
+                {isLoading && <h1>loading...</h1>}
+                {isSuccess && books.map(book => (
                     <Card
-                        id={book.id} 
+                        key={book.id}
+                        book={book}
                         view={view}
-                        key={book.id} 
-                        rating={book.rating} 
-                        img={book.img}
-                        name={book.name}
-                        author={book.author}
                     />
                 ))}
+                {isError && <h1>error</h1>}
             </div>
     </section>
 )};

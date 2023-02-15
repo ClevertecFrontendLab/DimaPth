@@ -9,8 +9,8 @@ import { Layout } from './components/layout/layout';
 
 import './index.css';
 import { MainPage } from './pages/main';
-import { RulesPage } from './pages/rules/rules-page';
-import { ContractPage } from './pages/contract/contract-page';
+import { RulesPage } from './pages/rules';
+import { ContractPage } from './pages/contract';
 import { BookPage } from './pages/book';
 import { BookLayout } from './components/layout/book-layout';
 

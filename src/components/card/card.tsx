@@ -7,63 +7,56 @@ import { Rating } from '../rating/rating';
 import NoImage from '../../assets/no-image.jpg';
 
 import style from './card.module.css'
+import { IBooks } from '../../types/books';
 
 interface CardProps {
-    id: number;
-    view: string;
-    rating: number;
-    img: string;
-    name: string;
-    author: string;
+    book: IBooks;
+    view: 'tile' | 'list';
 }
 
-export const Card: FC<CardProps> = ({id, view, img, rating, name, author}) => (
+export const Card: FC<CardProps> = ({book, view}) => (
     <Link 
-        to={`/books/cat/${id}`} 
+        to={`/books/cat/${book.id}`} 
         data-test-id='card' 
-        className={cn({
-            [style.hWrap]: view === 'list', 
-            [style.vWrap]: view === 'tile'
-        })}
+        className={cn(style.card, {[style.horizontal]: view === 'list'})}
     >
-        {view === 'tile' ? (
-        <div className={style.card}>
-            <img className={style.image} src={img ? img : NoImage} alt="book" width={174} height={242}/>
-            <div className={style.body}>
-                <div className={style.rating}>
-                    {rating ? (
-                        <Rating rating={rating}/>
+        <div className={cn(style.image, {[style.horizontal]: view === 'list'})}>
+            <img 
+                src={book.image?.url 
+                        ? `https://strapi.cleverland.by${book.image.url}` 
+                        : NoImage
+                    } 
+                alt="book" 
+                width={view === 'tile' ? 174 : 120} 
+                height={view === 'tile' ? 242 : 170}
+            />
+        </div>
+        <div className={cn(style.body, {[style.horizontal]: view === 'list'})}>
+            <div className={cn(style.rating, {[style.visible]: view === 'tile'})}>
+                {book.rating ? (
+                    <Rating rating={book.rating}/>
+                ) : (
+                    <p className={style.ghost}>ещё нет оценок</p>
+                )}
+            </div>
+            <h2 className={cn(style.title, {[style.horizontal]: view === 'list'})}>{book.title}</h2>
+            <p className={cn(style.ghost, {[style.horizontal]: view === 'list'})}>
+                {book.authors.length > 1 
+                    ? book.authors.map(author => `${author}, `)
+                    : `${book.authors}, `
+                }
+                {book.issueYear}
+            </p>
+            <div className={cn(style.btns, {[style.horizontal]: view === 'list'})}>
+                <div className={cn(style.rating, {[style.visible]: view === 'list'})}>
+                    {book.rating ? (
+                        <Rating rating={book.rating}/>
                     ) : (
                         <p className={style.ghost}>ещё нет оценок</p>
                     )}
                 </div>
-                <h2 className={style.name}>{name}</h2>
-                <p className={style.ghost}>{author}</p>
-                <div className={style.btn}>
-                    <Button>Забронировать</Button>
-                </div>
+                <Button>Забронировать</Button>
             </div>
         </div>
-    ) : (
-        <div className={style.hCard}>
-            <img src={img ? img : NoImage} alt="book" width={120} height={170}/>
-            <div className={style.hBody}>
-                <div className={style.titles}>
-                    <h2 className={style.hName}>{name}</h2>
-                    <p className={style.hAuthor}>{author}</p>
-                </div>
-                <div className={style.hBtns}>
-                    {rating ? (
-                        <Rating rating={rating} size='small'/>
-                    ) : (
-                        <p className={style.ghost}>ещё нет оценок</p>
-                    )}
-                    <div className={style.hBtn}>
-                        <Button>Забронировать</Button>
-                    </div>
-                </div>
-            </div>
-        </div> 
-    )}
   </Link>  
 )

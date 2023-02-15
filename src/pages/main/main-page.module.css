@@ -36,6 +36,9 @@
 .searchBar {
     width: 350px;
     padding: 10px 0;
+}
+.searchBar > button {
+    height: 16px;
 }    
 
 .searchIcon {
@@ -130,6 +133,9 @@
 }
 
 @media screen and (max-width: 760px) {
+    .mainPage {
+        width: 100%;
+    }
     .navList {
         margin-bottom: 20px;
     }

@@ -1,11 +1,13 @@
-.hWrap {
-    width: 100%;
+/* view */
+.rating {
+    display: none;
 }
-.vWrap {
-    width: 190px;
+.visible {
+    display: block;
 }
+/* view */
 
-/* vertical card */
+
 .card {
     display: flex;
     flex-direction: column;
@@ -14,6 +16,13 @@
     box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18), 0px 1px 5px rgba(191, 196, 201, 0.24);
     border-radius: 10px;
 }
+.card.horizontal {
+    flex-direction: row;
+    width: 100%;
+    height: unset;
+    padding: 24px;
+    padding-left: 16px;
+}
 
 .body {
     display: flex;
@@ -21,10 +30,36 @@
     justify-content: space-between;
     height: 100%;
     margin-left: 8px;
+    margin-right: 8px;
+}
+.body.horizontal {
+    width: 100%;
+    margin-left: 16px;
 }
 
 .image {
+    flex-shrink: 0;
     margin: 8px 8px 16px;
+}
+.image.horizontal {
+    margin: 0;
+}
+
+
+.title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+}
+.title.horizontal {
+    white-space: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 32px;
+    margin-bottom: 8px;
 }
 
 .ghost {
@@ -33,146 +68,104 @@
     line-height: 18px;
     color: #A7A7A7;
 }
-
-.name {
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 18px;
-}
-
-.btn {
-    margin: 0 12px 16px 4px;
-}
-
-/* horizontal card */
-
-.hCard {
-    width: 100%;
-    display: flex;
-    box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18), 0px 1px 5px rgba(191, 196, 201, 0.24);
-    border-radius: 12px;
-    padding: 24px;
-    padding-left: 16px;
-}
-
-.hBody {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-left: 16px;
-}
-
-.hName {
-    font-weight: 700;
-    font-size: 22px;
-    line-height: 32px;
-    margin-bottom: 8px;
-}
-
-.hAuthor {
-    color: #727272;
+.ghost.horizontal {
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
+    color: #727272;
 }
 
-.hBtns {
+.btns {
+    margin: 0 4px 16px;
+}
+.btns.horizontal {
+    margin: 0;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    justify-content: space-between;
+    margin-right: 0;
 }
-
-.hBtn {
+.btns.horizontal > button {
     width: 174px;
 }
 
 @media screen and (max-width: 1400px) {
-    .name {
+    .title {
         font-weight: 700;
         font-size: 12px;
         line-height: 18px;
     }
+    .title.horizontal {
+        font-size: 24px;
+        line-height: 30px; 
+    }
     .ghost { 
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        text-transform: uppercase;
         font-weight: 700;
         font-size: 12px;
         line-height: 18px;
         color: #727272;
     }
-
-    /* horizontal */
-    .hCard {
-        padding-top: 16px;
-        padding-bottom: 16px;
-    }
-    .hName {
-        font-size: 24px;
-        line-height: 30px;
-    }
-    .hAuthor {
+    .ghost.horizontal {
         margin-bottom: 16px;
     }
 }
 
 @media screen and (max-width: 760px) {
-    .vWrap {
-        width: 100%;
-    }
     .card {
         width: 100%;
     }
-    .body {
-        margin-left: 16px;
-    }
-    .image {
-        margin: 8px auto 16px;
-    }
-    .name {
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 18px;
-    }
-    .ghost {
-        font-weight: 400;
-    }
-    .btn {
-        margin: 0px 16px 16px 0;
-    }
-
-    /* horizontal */
-    
-    .hCard {
+    .card.horizontal {
         padding: 16px;
         padding-left: 8px;
     }
-    .hCard img {
+
+    .body {
+        margin: 0 16px 0;
+    }
+    .body.horizontal {
+        width: 186px;
+        margin: 0;
+        margin-left: 16px;
+    }
+
+    .image {
+        margin: 8px auto 16px;
+    }
+    .image.horizontal > img {
         width: 70px;
         height: 100px;
     }
-    .hBody {
-        margin-left: 8px;
-    }
-    .hName {
+
+    .title {
         font-weight: 600;
         font-size: 14px;
         line-height: 18px;
-        margin-bottom: 3px;
     }
-    .hAuthor {
+    .title.horizontal {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    .ghost {
         font-weight: 400;
+    }
+    .ghost.horizontal{
         font-size: 12px;
         line-height: 18px;
-        margin-bottom: 3px;
+        margin-bottom: 4px;
     }
-    .hBtns {
+
+    .btns {
+        margin: 0px 16px 16px 0;
+    }
+    .btns.horizontal {
+        gap: 16px;
         flex-direction: column;
-        justify-content: unset;
-        align-items: unset;
-        margin-bottom: 0;
-    }
-    .hBtn {
-        width: 100%;
-        margin-top: 16px;
+        align-items: start;
     }
 }
