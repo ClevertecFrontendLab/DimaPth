@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { IBook } from '../types/book-id'
 import { IBooks } from '../types/books'
 
 export const booksApi = createApi({
@@ -9,8 +10,13 @@ export const booksApi = createApi({
             query: () => ({
                 url: '/books'
             })
+        }),
+        fetchBookByID: build.query<IBook, string | undefined>({
+            query: (id) => ({
+                url: `/books/${id}`,
+            })
         })
     })
 })
 
-export const {useFetchAllBooksQuery} = booksApi
+export const {useFetchAllBooksQuery, useFetchBookByIDQuery} = booksApi

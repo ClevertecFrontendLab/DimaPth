@@ -34,7 +34,6 @@
 
 .main {
     display: flex;
-    justify-content: space-between;
     gap: 30px;
     margin-bottom: 42px;
 }
@@ -80,6 +79,8 @@
     display: flex;
     align-items: center;
     gap: 24px;
+    font-size: 14px;
+    line-height: 18px; 
 }
 
 .rating .wrap span {
@@ -320,9 +321,6 @@
     }
     .review {
         margin-bottom: 32px;
-    }
-    .review:nth-child(4) {
-        margin-bottom: 20px;
     }
     .review .userInfo {
         flex-direction: column;
