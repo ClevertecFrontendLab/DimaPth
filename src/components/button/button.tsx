@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import cn from 'classnames';
+
 import style from './button.module.css';
 
 interface ButtonProps {

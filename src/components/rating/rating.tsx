@@ -1,5 +1,4 @@
 import { FC, useState } from 'react';
-
 import cn from 'classnames';
 
 import {ReactComponent as Star} from '../../assets/star.svg';

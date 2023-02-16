@@ -1,13 +1,14 @@
 import React, { FC, useState } from 'react';
-import cn from 'classnames';
 import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import {ReactComponent as ShowIcon} from '../../assets/show-icon.svg';
+import cn from 'classnames';
+
 import {ReactComponent as HideIcon} from '../../assets/hide-icon.svg';
+import {ReactComponent as ShowIcon} from '../../assets/show-icon.svg';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { useFetchCategoriesQuery } from '../../redux/books-api';
+import { setMenu } from '../../redux/slices/menu-slice';
 
 import style from './aside-nav.module.css';
-import { setMenu } from '../../redux/slices/menu-slice';
-import { useFetchCategoriesQuery } from '../../redux/books-api';
 
 interface AsideNavProps {
     mobile?: boolean;

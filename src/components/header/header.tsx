@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import cn from 'classnames';
 import { Link } from 'react-router-dom';
+import cn from 'classnames';
 
 import Avatar from '../../assets/avatar.png';
 import Logo from '../../assets/logo.png';

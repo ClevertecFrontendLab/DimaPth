@@ -1,18 +1,18 @@
 import {FC, useState} from 'react'
 import cn from 'classnames';
+import { type Swiper as SwiperType,FreeMode, Pagination, Thumbs } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { FreeMode, Pagination, Thumbs, type Swiper as SwiperType } from 'swiper';
 
 import NoImageBig from '../../assets/no-image-big.jpg';
 
 import './style.css';
+import style from './slider.module.css';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-
-import style from './slider.module.css';
 
 interface SliderProps {
     images: Array<{url: string | null}>

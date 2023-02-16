@@ -1,11 +1,12 @@
 import React, { FC, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import cn from 'classnames';
+
+import {ReactComponent as HideIcon} from '../../assets/hide-icon.svg';
+import {ReactComponent as ShowIcon} from '../../assets/show-icon.svg';
+import UserIcon from '../../assets/user-icon.png';
 import { Button } from '../../components/button/button';
 import { Rating } from '../../components/rating/rating';
-import UserIcon from '../../assets/user-icon.png';
-import {ReactComponent as ShowIcon} from '../../assets/show-icon.svg';
-import {ReactComponent as HideIcon} from '../../assets/hide-icon.svg';
 import { Slider } from '../../components/slider/slider';
 import { useFetchBookByIDQuery } from '../../redux/books-api';
 

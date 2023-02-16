@@ -1,18 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { HashRouter, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 
-import {store} from './redux/store'
-
+import { BookLayout } from './components/layout/book-layout';
 import { Layout } from './components/layout/layout';
-
-import './index.css';
+import { BookPage } from './pages/book';
+import { ContractPage } from './pages/contract';
 import { MainPage } from './pages/main';
 import { RulesPage } from './pages/rules';
-import { ContractPage } from './pages/contract';
-import { BookPage } from './pages/book';
-import { BookLayout } from './components/layout/book-layout';
+import {store} from './redux/store'
+
+import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
-import { AsideNav } from '../aside/aside-nav';
 
+import { AsideNav } from '../aside/aside-nav';
 import { Footer } from '../footer/footer';
 import { Header } from '../header/header';
 

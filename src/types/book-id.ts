@@ -1,6 +1,6 @@
-import { IDelivery } from "./delivery";
-import { IBooking } from "./booking";
-import { IHistories } from "./histories";
+import { IBooking } from './booking';
+import { IDelivery } from './delivery';
+import { IHistories } from './histories';
 
 interface IComments {
     id: number,

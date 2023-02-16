@@ -2,8 +2,8 @@ import { FC } from 'react';
 
 import FacebookIcon from '../../assets/icon-facebook.svg'
 import InstagramIcon from '../../assets/icon-instagram.svg'
-import VkIcon from '../../assets/icon-vk.svg'
 import LinkedInIcon from '../../assets/icon-linkedin.svg'
+import VkIcon from '../../assets/icon-vk.svg'
 
 import style from './footer.module.css';
 

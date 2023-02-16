@@ -2,12 +2,12 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 
+import NoImage from '../../assets/no-image.jpg';
+import { IBooks } from '../../types/books';
 import { Button } from '../button/button';
 import { Rating } from '../rating/rating';
-import NoImage from '../../assets/no-image.jpg';
 
 import style from './card.module.css'
-import { IBooks } from '../../types/books';
 
 interface CardProps {
     book: IBooks;

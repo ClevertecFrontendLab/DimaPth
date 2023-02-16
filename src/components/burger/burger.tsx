@@ -1,10 +1,10 @@
 import { FC } from 'react'
 import cn from 'classnames';
 
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { setMenu } from '../../redux/slices/menu-slice';
 
 import style from './burger.module.css';
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 
 export const Burger: FC = () => {
     const {isMenuOpen} = useAppSelector(state => state.menu)

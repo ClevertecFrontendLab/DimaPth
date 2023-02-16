@@ -1,6 +1,6 @@
-import { IBooking } from "./booking";
-import { IDelivery } from "./delivery";
-import { IHistories } from "./histories";
+import { IBooking } from './booking';
+import { IDelivery } from './delivery';
+import { IHistories } from './histories';
 
 export interface IBooks {
     issueYear: string | null,

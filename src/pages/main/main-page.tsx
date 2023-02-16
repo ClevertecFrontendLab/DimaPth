@@ -1,16 +1,15 @@
 import { FC, useState } from 'react';
 import cn from 'classnames'
 
-import {ReactComponent as SearchIcon} from '../../assets/search-icon.svg';
 import {ReactComponent as CloseIcon} from '../../assets/close-icon.svg';
 import {ReactComponent as FilterIcon} from '../../assets/filter-icon.svg';
-import {ReactComponent as TileView} from '../../assets/tile-view.svg';
 import {ReactComponent as ListView} from '../../assets/list-view.svg';
-
+import {ReactComponent as SearchIcon} from '../../assets/search-icon.svg';
+import {ReactComponent as TileView} from '../../assets/tile-view.svg';
 import { Card } from '../../components/card/card';
+import { useFetchAllBooksQuery } from '../../redux/books-api';
 
 import style from './main-page.module.css';
-import { useFetchAllBooksQuery } from '../../redux/books-api';
 
 
 export const MainPage: FC = () => {
