@@ -13,7 +13,9 @@ import style from './book-page.module.css';
 
 export const BookPage: FC = () => {
     const [isOpen, setIsOpen] = useState(true)
+
     const {category, bookId} = useParams<{category?: string, bookId?: string}>();
+    
     const {data, isLoading, isError, isSuccess} = useFetchBookByIDQuery(bookId)
     
     return (
@@ -27,27 +29,25 @@ export const BookPage: FC = () => {
                     <span className={style.divider}>/</span>
                     <span>{data?.title}</span>
                 </div>
-                <div >
-                    <div className={style.main}>
-                        <Slider images={data?.images}/>
-                        <div>
-                            <div className={style.info}>
-                                <h2 className={style.title}>{data.title}</h2>
-                                <h3 className={style.subTitle}>{data.authors}</h3>
-                                <div className={style.btn}>
-                                    <Button size='large'>Забронировать</Button> 
-                                </div>
-                            </div>
-                            <div className={cn(style.about, style.desktop)}>
-                                <h3 className={style.title}>О книге</h3>
-                                <p className={style.text}>{data.description}</p>
+                <div className={style.main}>
+                    <Slider images={data?.images}/>
+                    <div>
+                        <div className={style.info}>
+                            <h2 className={style.title}>{data.title}</h2>
+                            <h3 className={style.subTitle}>{data.authors}</h3>
+                            <div className={style.btn}>
+                                <Button size='large'>Забронировать</Button> 
                             </div>
                         </div>
-                    </div>
-                    <div className={cn(style.about, style.mobile)}>
+                        <div className={cn(style.about, style.desktop)}>
                             <h3 className={style.title}>О книге</h3>
                             <p className={style.text}>{data.description}</p>
+                        </div>
                     </div>
+                </div>
+                <div className={cn(style.about, style.mobile)}>
+                        <h3 className={style.title}>О книге</h3>
+                        <p className={style.text}>{data.description}</p>
                 </div>
                 <div className={style.rating}>
                     <h3 className={style.title}>Рейтинг</h3>
