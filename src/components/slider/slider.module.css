@@ -5,6 +5,9 @@
     width: 100%;
     margin-bottom: 16px;
 }
+.mySwiper img {
+    width: 100%;
+}
 
 @media screen and (max-width: 1400px) {
     .wrap {

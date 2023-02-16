@@ -16,7 +16,7 @@ interface CardProps {
 
 export const Card: FC<CardProps> = ({book, view}) => (
     <Link 
-        to={`/books/cat/${book.id}`} 
+        to={`/books/${book.categories}/${book.id}`} 
         data-test-id='card' 
         className={cn(style.card, {[style.horizontal]: view === 'list'})}
     >

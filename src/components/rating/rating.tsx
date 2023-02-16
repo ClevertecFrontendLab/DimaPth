@@ -24,7 +24,10 @@ export const Rating: FC<RatingProps> = ({rating: rate = 0, size}) => {
             <button
                 type="button"
                 key={item}
-                onClick={() => setRating(item)}
+                onClick={(e) => {
+                    e.preventDefault()
+                    setRating(item)
+                }}
                 onMouseEnter={() => setHover(item)}
                 onMouseLeave={() => setHover(rating)}
             >

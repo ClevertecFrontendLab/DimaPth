@@ -15,14 +15,11 @@ import 'swiper/css/thumbs';
 import style from './slider.module.css';
 
 interface SliderProps {
-    img: any,
+    images: Array<{url: string | null}>
 }
 
-export const Slider: FC<SliderProps> = ({img}) => {
+export const Slider: FC<SliderProps> = ({images}) => {
     const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
-    const pagination = {
-        clickable: true,
-    }
 
     return (
     <div className={style.wrap}>
@@ -34,11 +31,15 @@ export const Slider: FC<SliderProps> = ({img}) => {
             className={style.mySwiper}
             data-test-id='slide-big'
         >
-            {img 
-                ? (img.map((image: string) => <SwiperSlide><img src={image} alt="book"/></SwiperSlide>)) 
+            {images !== null
+                ? (images.map((img) => 
+                    <SwiperSlide key={img.url}>
+                        <img src={`https://strapi.cleverland.by${img.url}`} alt="book"/>
+                    </SwiperSlide>
+                )) 
                 : <SwiperSlide><img src={NoImageBig} alt="book"/></SwiperSlide>}
         </Swiper>
-        {img.length > 1 && (
+        {images.length > 1 && (
         <Swiper
             onSwiper={setThumbsSwiper}
             spaceBetween={30}
@@ -48,7 +49,11 @@ export const Slider: FC<SliderProps> = ({img}) => {
             modules={[FreeMode, Thumbs]}
             className={style.mySwiper2}
         >
-            {img.map((image: string) => <SwiperSlide data-test-id='slide-mini'><img src={image} alt="book"/></SwiperSlide>)}
+            {images.map((img) => 
+                <SwiperSlide data-test-id='slide-mini' key={img.url}>
+                    <img src={`https://strapi.cleverland.by${img.url}`} alt="book"/>
+                </SwiperSlide>
+            )}
         </Swiper>
         )}
     </div>
