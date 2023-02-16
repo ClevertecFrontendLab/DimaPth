@@ -7,24 +7,7 @@ import {ReactComponent as HideIcon} from '../../assets/hide-icon.svg';
 
 import style from './aside-nav.module.css';
 import { setMenu } from '../../redux/slices/menu-slice';
-
-const books = [
-    // {book: 'Все книги', category: 'all'},
-    {book: 'Бизнес-книги', count: 14, category: 'buisness'},
-    {book: 'Детективы', count: 8, category: 'detective'},
-    {book: 'Детские книги', count: 14, category: 'children'},
-    {book: 'Зарубежная литература', count: 2, category: 'foreign'},
-    {book: 'История', count: 5, category: 'history'},
-    {book: 'Классическая литература', count: 12, category: 'classic'},
-    {book: 'Книги по психологии', count: 11, category: 'psychology'},
-    {book: 'Компьютерная литература', count: 54, category: 'computers'},
-    {book: 'Культура и искусство', count: 5, category: 'culture'},
-    {book: 'Наука и образование', count: 2, category: 'science'},
-    {book: 'Публицистическая литература', count: 0, category: 'publicistic'},
-    {book: 'Справочники', count: 10, category: 'references'},
-    {book: 'Фантастика', count: 12, category: 'scifi'},
-    {book: 'Юмористическая литература', count: 8, category: 'humor'}
-]
+import { useFetchCategoriesQuery } from '../../redux/books-api';
 
 interface AsideNavProps {
     mobile?: boolean;
@@ -34,6 +17,9 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
     const [tab, setTab] = useState('books');
     const [isOpen, setIsOpen] = useState(true);
     const [category, setCategory] = useState('all')
+
+    const {data, isError, isSuccess} = useFetchCategoriesQuery();
+
     const {isMenuOpen} = useAppSelector(state => state.menu)
     const dispatch = useAppDispatch();
 
@@ -46,8 +32,8 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
             onClick={(e) => e.stopPropagation()}
             aria-hidden='true'
             data-test-id={mobile && 'burger-navigation'}
-        >
-            <ul className={style.tabs}>
+        >   
+                <ul className={style.tabs}>
                 <li>
                     <button 
                         type='button'
@@ -77,24 +63,24 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
                                 <span className={style.category}>Все книги</span>
                             </Link>
                         </li>
-                        {books.map(item => (
+                        {isError && <h1>error</h1>}
+                        {isSuccess && data.map(item => (
                             <li 
-                                key={item.book}
-                                className={cn({[style.active]: category === item.category})} 
+                                key={item.id}
+                                className={cn({[style.active]: category === item.path})} 
                                 >
                                 <Link 
-                                    to={`/books/${item.category}`} 
+                                    to={`/books/${item.path}`} 
                                     onClick={() => {
-                                        setCategory(item.category)
+                                        setCategory(item.path)
                                         dispatch(setMenu(false))
                                     }}
                                 >
-                                    <span className={style.category}>{item.book}</span>&nbsp;
-                                    <span className={style.count}>{item.count}</span>
+                                    <span className={style.category}>{item.name}</span>
                                 </Link>
                             </li>
                         ))}
-                    </ul>
+                    </ul>   
                 </li>
                 <li data-test-id={mobile ? 'burger-terms' : 'navigation-terms'}>
                     <Link
