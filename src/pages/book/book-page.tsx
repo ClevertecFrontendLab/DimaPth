@@ -12,6 +12,7 @@ import { Loader } from '../../components/loader/loader';
 import { useFetchBookByIDQuery } from '../../redux/books-api';
 
 import style from './book-page.module.css';
+import { Error } from '../../components/error/error';
 
 export const BookPage: FC = () => {
     const [isOpen, setIsOpen] = useState(true)
@@ -23,7 +24,7 @@ export const BookPage: FC = () => {
     return (
     <section className={style.bookPage}>
         {isLoading && <Loader />}
-        {isError && <h1>error</h1>}
+        {isError && <Error />}
         {isSuccess && (
             <React.Fragment>
                 <div className={style.breadcrumbs}>

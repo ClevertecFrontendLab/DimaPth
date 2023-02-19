@@ -9,6 +9,8 @@ import { useFetchCategoriesQuery } from '../../redux/books-api';
 import { setMenu } from '../../redux/slices/menu-slice';
 
 import style from './aside-nav.module.css';
+import { Error } from '../error/error';
+import { Loader } from '../loader/loader';
 
 interface AsideNavProps {
     mobile?: boolean;
@@ -19,7 +21,7 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
     const [isOpen, setIsOpen] = useState(true);
     const [category, setCategory] = useState('all')
 
-    const {data, isError, isSuccess} = useFetchCategoriesQuery();
+    const {data, isError, isLoading, isSuccess} = useFetchCategoriesQuery();
 
     const {isMenuOpen} = useAppSelector(state => state.menu)
     const dispatch = useAppDispatch();
@@ -49,7 +51,8 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
                         <span>Витрина книг</span>
                         {isOpen ? <HideIcon /> : <ShowIcon />}
                     </button>
-                    {isError && <h1>error</h1>}
+                    {isError && <Error />}
+                    {isLoading && <Loader />}
                     {isSuccess && 
                     <ul className={cn(style.categories, {[style.hidden]: !isOpen})}>
                         <li 

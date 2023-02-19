@@ -11,6 +11,7 @@ import { Loader } from '../../components/loader/loader';
 import { useFetchAllBooksQuery } from '../../redux/books-api';
 
 import style from './main-page.module.css';
+import { Error } from '../../components/error/error';
 
 
 export const MainPage: FC = () => {
@@ -66,6 +67,7 @@ export const MainPage: FC = () => {
             </div>
             <div className={cn(style.cardList, {[style.horizontal]: view === 'list'})}>
                 {isLoading && <Loader />}
+                {isError && <Error />}
                 {isSuccess && books.map(book => (
                     <Card
                         key={book.id}
@@ -73,7 +75,6 @@ export const MainPage: FC = () => {
                         view={view}
                     />
                 ))}
-                {isError && <h1>error</h1>}
             </div>
     </section>
 )};
