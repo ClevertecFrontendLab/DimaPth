@@ -49,6 +49,8 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
                         <span>Витрина книг</span>
                         {isOpen ? <HideIcon /> : <ShowIcon />}
                     </button>
+                    {isError && <h1>error</h1>}
+                    {isSuccess && 
                     <ul className={cn(style.categories, {[style.hidden]: !isOpen})}>
                         <li 
                             className={cn({[style.active]: category === 'all'})}
@@ -64,8 +66,7 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
                                 <span className={style.category}>Все книги</span>
                             </Link>
                         </li>
-                        {isError && <h1>error</h1>}
-                        {isSuccess && data.map(item => (
+                        {data.map(item => (
                             <li 
                                 key={item.id}
                                 className={cn({[style.active]: category === item.path})} 
@@ -81,7 +82,7 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
                                 </Link>
                             </li>
                         ))}
-                    </ul>   
+                    </ul>}   
                 </li>
                 <li data-test-id={mobile ? 'burger-terms' : 'navigation-terms'}>
                     <Link

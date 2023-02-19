@@ -7,16 +7,17 @@ import {ReactComponent as ListView} from '../../assets/list-view.svg';
 import {ReactComponent as SearchIcon} from '../../assets/search-icon.svg';
 import {ReactComponent as TileView} from '../../assets/tile-view.svg';
 import { Card } from '../../components/card/card';
+import { Loader } from '../../components/loader/loader';
 import { useFetchAllBooksQuery } from '../../redux/books-api';
 
 import style from './main-page.module.css';
 
 
 export const MainPage: FC = () => {
-    const {data: books, isLoading, isError, isSuccess} = useFetchAllBooksQuery()
-
     const [view, setView] = useState<'tile' | 'list'>('tile')
     const [open, setOpen] = useState(false)
+
+    const {data: books, isLoading, isError, isSuccess} = useFetchAllBooksQuery()
 
     return (
     <section className={style.mainPage}>
@@ -64,7 +65,7 @@ export const MainPage: FC = () => {
                 </div>
             </div>
             <div className={cn(style.cardList, {[style.horizontal]: view === 'list'})}>
-                {isLoading && <h1>loading...</h1>}
+                {isLoading && <Loader />}
                 {isSuccess && books.map(book => (
                     <Card
                         key={book.id}

@@ -8,6 +8,7 @@ import UserIcon from '../../assets/user-icon.png';
 import { Button } from '../../components/button/button';
 import { Rating } from '../../components/rating/rating';
 import { Slider } from '../../components/slider/slider';
+import { Loader } from '../../components/loader/loader';
 import { useFetchBookByIDQuery } from '../../redux/books-api';
 
 import style from './book-page.module.css';
@@ -21,7 +22,7 @@ export const BookPage: FC = () => {
     
     return (
     <section className={style.bookPage}>
-        {isLoading && <h1>loading...</h1>}
+        {isLoading && <Loader />}
         {isError && <h1>error</h1>}
         {isSuccess && (
             <React.Fragment>
