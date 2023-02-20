@@ -1,0 +1,59 @@
+.burger {
+    display: none;
+    height: 33px;
+    width: 33px;
+    padding: 7px 3px;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-right: 24px;
+}
+
+.burger_line {
+    width: 100%;
+    background-color: #363636;
+    height: 3px;
+    transform: rotate(0) translate(0);
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) .5s;
+}
+
+.burger_line.clicked {
+    background: linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+}
+
+.burger_line.clicked:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 5.5px);
+    transition: ease-out .5s;
+}
+.burger_line.clicked:nth-child(2) {
+    transform: scale(0.1);
+    transition: ease-out .5s;
+}
+.burger_line.clicked:nth-child(3) {
+    transform: rotate(135deg) translate(-6px, 5.5px);
+    transition: ease-out .5s;
+}
+
+@media screen and (max-width: 1400px) {
+    .burger {
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .burger {
+        height: 24px;
+        width: 24px;
+        padding: 5px 2px;
+    }
+    .burger_line {
+        height: 2px;
+    }
+    
+    .burger_line.clicked:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 2.5px);
+    }
+    .burger_line.clicked:nth-child(3) {
+        transform: rotate(135deg) translate(-6px, 3px);
+    }
+}

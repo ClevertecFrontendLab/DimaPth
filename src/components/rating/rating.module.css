@@ -1,0 +1,35 @@
+.rating {
+  height: 19px;
+}
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.star {
+  margin-right: 10px;
+}
+.on {
+  fill: #FFBC1F;
+}
+.off {
+  fill: #fff;
+}
+
+.small {
+  width: 20px;
+  height: 19px;
+}
+
+@media screen and (max-width: 760px) {
+  .small {
+    width: 13;
+    height: 12px;
+  }
+  .large {
+    width: 28px;
+    height: 27px;
+    margin-right: 18px;
+  }
+}

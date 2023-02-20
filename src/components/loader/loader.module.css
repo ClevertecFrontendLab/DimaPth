@@ -1,0 +1,46 @@
+.container {
+    position: fixed;
+    z-index: 8;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    background: rgba(54, 54, 54, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.loader svg {
+    animation: spin 1s infinite linear;
+}
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .loader svg {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .loader svg {
+    width: 22px;
+    height: 22px;
+  }
+}

@@ -1,0 +1,36 @@
+.main {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.main .title {  
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+    margin-bottom: 32px;
+}
+
+.subTitle {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.text {
+    margin: 16px 0 16px 30px;
+}
+
+@media screen and (max-width: 760px) {
+    .contract {
+        margin-bottom: 24px;
+    }
+    .main .title {
+        font-size: 18px;
+        line-height: 28px;   
+    }
+    .text {
+        font-size: 15px;
+        line-height: 20px;
+    }
+}

@@ -1,0 +1,127 @@
+.mobile {
+    display: none;
+    position: absolute;
+    z-index: 10;
+}
+
+.aside {
+    width: 280px;
+    background-color: #fff;
+    flex-shrink: 0;
+}
+
+.activeTab {
+    background: linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-image: linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+    border-image-slice: 1;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #363636;
+}
+
+.activeTab svg {
+    fill: #F83600;
+}
+
+.active {
+    background: linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.active .category {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 700;
+}
+
+.active .count {
+    background: #363636;
+    background-clip: text;
+    color: #363636;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+/* main styles */
+
+.tab {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 255px;
+    margin-top: 42px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    margin-right: 24px;
+}
+
+.tab svg {
+    color: #363636;
+    margin-right: 12px;
+}
+
+.tabs li:first-child, .tabs button {
+    margin-top: 0;
+}
+
+.categories {
+    padding-top: 16px;
+    padding-left: 24px;
+}
+
+.categories.hidden {
+    display: none;
+}
+
+.categories li {
+    margin-bottom: 16px;
+}
+
+.count {
+    color: #A7A7A7;
+    font-size: 14px;
+}
+
+
+@media screen and (max-width: 1400px) {
+    .aside {
+        display: none;
+    }
+    .mobile {
+        display: block;
+        top: 0;
+        left: 0;
+        background-color: #F9F9FA;
+        width: 502px;
+        transition: .5s;
+        transform: translate(0, 0);
+        opacity: 1;
+        border-radius: 10px;
+    }
+    .tabs {
+        padding: 32px;
+        padding-bottom: 52px;
+    }
+    .separator {
+        height: 1px;
+        background-color: #BFC4C9;
+    }
+    .hidden {
+        transition: .5s;
+        transform: translate(-100%, 0);
+        opacity: 0;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .mobile {
+        width: 100%;
+    }
+    .tabs {
+        padding-left: 16px;
+        padding-right: 0;
+    }
+}
