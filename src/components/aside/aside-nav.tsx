@@ -45,7 +45,6 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
                         className={cn(style.tab, {[style.activeTab]: tab === 'books'})} 
                         onClick={() => {
                             setTab('books')
-                            dispatch(setCategory('all'))
                             setIsOpen(!isOpen)
                         }}
                         data-test-id={mobile ? 'burger-showcase': 'navigation-showcase'}
@@ -67,8 +66,6 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
                                 }}
                                 >
                                 <span className={style.category}>Все книги</span>
-                                &nbsp;
-                                <span className={style.count}>140</span>
                             </Link>
                         </li>
                         {data.map(item => (
