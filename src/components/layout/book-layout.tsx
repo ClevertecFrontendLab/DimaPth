@@ -9,7 +9,9 @@ import style from './layout.module.css';
 export const BookLayout: FC = () => (
     <div className={style.container}>
         <Header />
-        <Outlet />
+        <div className={style.main}>
+            <Outlet />
+        </div>
         <Footer />
     </div>
 )

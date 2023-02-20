@@ -6,7 +6,7 @@ import {ReactComponent as HideIcon} from '../../assets/hide-icon.svg';
 import {ReactComponent as ShowIcon} from '../../assets/show-icon.svg';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { useFetchCategoriesQuery } from '../../redux/books-api';
-import { setMenu } from '../../redux/slices/menu-slice';
+import { setCategory, setMenu } from '../../redux/slices/menu-slice';
 
 import style from './aside-nav.module.css';
 import { Error } from '../error/error';
@@ -19,11 +19,10 @@ interface AsideNavProps {
 const AsideNav: FC<AsideNavProps> = ({mobile}) => {
     const [tab, setTab] = useState('books');
     const [isOpen, setIsOpen] = useState(true);
-    const [category, setCategory] = useState('all')
 
     const {data, isError, isLoading, isSuccess} = useFetchCategoriesQuery();
 
-    const {isMenuOpen} = useAppSelector(state => state.menu)
+    const {isMenuOpen, category} = useAppSelector(state => state.menu)
     const dispatch = useAppDispatch();
 
     return (
@@ -43,7 +42,7 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
                         className={cn(style.tab, {[style.activeTab]: tab === 'books'})} 
                         onClick={() => {
                             setTab('books')
-                            setCategory('all')
+                            dispatch(setCategory('all'))
                             setIsOpen(!isOpen)
                         }}
                         data-test-id={mobile ? 'burger-showcase': 'navigation-showcase'}
@@ -56,13 +55,13 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
                     {isSuccess && 
                     <ul className={cn(style.categories, {[style.hidden]: !isOpen})}>
                         <li 
-                            className={cn({[style.active]: category === 'all'})}
+                            className={cn({[style.active]: category === 'Все книги'})}
                             data-test-id={mobile? 'burger-books' : 'navigation-books'}
                         >
                             <Link 
                                 to='/books/all'
                                 onClick={() => {
-                                    setCategory('all')
+                                    dispatch(setCategory('all'))
                                     dispatch(setMenu(false))
                                 }}
                                 >
@@ -72,12 +71,12 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
                         {data.map(item => (
                             <li 
                                 key={item.id}
-                                className={cn({[style.active]: category === item.path})} 
+                                className={cn({[style.active]: category === item.name})} 
                                 >
                                 <Link 
                                     to={`/books/${item.path}`} 
                                     onClick={() => {
-                                        setCategory(item.path)
+                                        dispatch(setCategory(item.name))
                                         dispatch(setMenu(false))
                                     }}
                                 >
@@ -93,7 +92,7 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
                         className={cn(style.tab, {[style.activeTab]: tab === 'rules'})}
                         onClick={() => {
                             setTab('rules')
-                            setCategory('')
+                            dispatch(setCategory(''))
                             setIsOpen(false)
                             dispatch(setMenu(false))
                             window.scrollTo(0, 0)
@@ -108,7 +107,7 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
                         className={cn(style.tab, {[style.activeTab]: tab === 'contract'})}
                         onClick={() => {
                             setTab('contract')
-                            setCategory('')
+                            dispatch(setCategory(''))
                             setIsOpen(false)
                             dispatch(setMenu(false))
                             window.scrollTo(0, 0)

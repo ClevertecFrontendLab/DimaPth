@@ -2,10 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 
 interface MenuState {
     isMenuOpen: boolean;
+    category: string;
 }
 
+
 const initialState: MenuState = {
-    isMenuOpen: false
+    isMenuOpen: false,
+    category: 'Все книги'
 }
 
 export const menuSlice = createSlice({
@@ -14,8 +17,11 @@ export const menuSlice = createSlice({
     reducers : {
         setMenu (state, action) {
             state.isMenuOpen = action.payload; // eslint-disable-line no-param-reassign
+        },
+        setCategory (state, action) {
+            state.category = action.payload; // eslint-disable-line no-param-reassign
         }
     }
 })
 
-export const {setMenu} = menuSlice.actions;
+export const {setMenu, setCategory} = menuSlice.actions;

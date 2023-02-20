@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import cn from 'classnames'
 
 import {ReactComponent as CloseIcon} from '../../assets/close-icon.svg';
@@ -18,11 +18,15 @@ export const MainPage: FC = () => {
     const [view, setView] = useState<'tile' | 'list'>('tile')
     const [open, setOpen] = useState(false)
 
-    const {data: books, isLoading, isError, isSuccess} = useFetchAllBooksQuery()
+    const {data: books, isFetching, isError, isSuccess} = useFetchAllBooksQuery()
 
     return (
     <section className={style.mainPage}>
-            <div className={style.navList}>
+        {isFetching && <Loader />}
+        {isError && <Error />}
+        {isSuccess && (
+            <React.Fragment>
+                <div className={style.navList}>
                 <div className={style.searchWrap}>
                     <div 
                         className={cn(style.default, style.searchBar, {[style.opened]: open})} 
@@ -66,9 +70,7 @@ export const MainPage: FC = () => {
                 </div>
             </div>
             <div className={cn(style.cardList, {[style.horizontal]: view === 'list'})}>
-                {isLoading && <Loader />}
-                {isError && <Error />}
-                {isSuccess && books.map(book => (
+                {books.map(book => (
                     <Card
                         key={book.id}
                         book={book}
@@ -76,5 +78,6 @@ export const MainPage: FC = () => {
                     />
                 ))}
             </div>
+        </React.Fragment>)}
     </section>
 )};
