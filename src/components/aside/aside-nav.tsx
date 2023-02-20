@@ -26,6 +26,8 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
     const dispatch = useAppDispatch();
 
     return (
+        <React.Fragment>
+        {isLoading && <Loader />}
         <aside 
             className={cn(style.aside,
                 {[style.hidden]: !isMenuOpen,
@@ -35,6 +37,7 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
             aria-hidden='true'
             data-test-id={mobile && 'burger-navigation'}
         >   
+            {isError && <Error />}
                 <ul className={style.tabs}>
                 <li>
                     <button 
@@ -50,8 +53,6 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
                         <span>Витрина книг</span>
                         {isOpen ? <HideIcon /> : <ShowIcon />}
                     </button>
-                    {isError && <Error />}
-                    {isLoading && <Loader />}
                     {isSuccess && 
                     <ul className={cn(style.categories, {[style.hidden]: !isOpen})}>
                         <li 
@@ -61,11 +62,13 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
                             <Link 
                                 to='/books/all'
                                 onClick={() => {
-                                    dispatch(setCategory('all'))
+                                    dispatch(setCategory('Все книги'))
                                     dispatch(setMenu(false))
                                 }}
                                 >
                                 <span className={style.category}>Все книги</span>
+                                &nbsp;
+                                <span className={style.count}>140</span>
                             </Link>
                         </li>
                         {data.map(item => (
@@ -81,6 +84,8 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
                                     }}
                                 >
                                     <span className={style.category}>{item.name}</span>
+                                    &nbsp;
+                                    <span className={style.count}>15</span>
                                 </Link>
                             </li>
                         ))}
@@ -127,6 +132,7 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
                 </React.Fragment>
             )}
         </aside>
+        </React.Fragment>
     )
 }
 

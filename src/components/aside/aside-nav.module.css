@@ -37,6 +37,8 @@
 }
 
 .active .count {
+    background: #363636;
+    background-clip: text;
     color: #363636;
     font-weight: 400;
     font-size: 16px;
@@ -82,6 +84,7 @@
     color: #A7A7A7;
     font-size: 14px;
 }
+
 
 @media screen and (max-width: 1400px) {
     .aside {
