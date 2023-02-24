@@ -18,9 +18,9 @@ import style from './book-page.module.css';
 export const BookPage: FC = () => {
     const [isOpen, setIsOpen] = useState(true)
 
-    const {category, bookId} = useParams<{category?: string, bookId?: string}>();
+    const {bookId} = useParams<{bookId?: string}>();
     
-    const {category: breadcrumbsCat} = useAppSelector(state => state.menu)
+    const {category} = useAppSelector(state => state.menu)
 
     const {data, isFetching, isError, isSuccess} = useFetchBookByIDQuery(bookId)
     
@@ -29,10 +29,10 @@ export const BookPage: FC = () => {
         <div className={style.breadcrumbs}>
             <span>
                 <Link 
-                    to={`/books/${breadcrumbsCat.path}`}
+                    to={`/books/${category.path}`}
                     data-test-id='breadcrumbs-link'
                     >
-                    {breadcrumbsCat.name}
+                    {category.name}
                 </Link>
             </span>
             <span className={style.divider}>/</span>
@@ -97,7 +97,7 @@ export const BookPage: FC = () => {
                     <div className={style.column}>
                         <div className={style.item}>
                             <div>Жанр</div>
-                            <div>{category}</div>
+                            <div>{data.categories.join(', ')}</div>
                         </div>
                         <div className={style.item}>
                             <div>Вес</div>
