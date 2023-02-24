@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import cn from 'classnames'
 
 import {ReactComponent as CloseIcon} from '../../assets/close-icon.svg';
@@ -8,17 +8,28 @@ import {ReactComponent as SearchIcon} from '../../assets/search-icon.svg';
 import {ReactComponent as TileView} from '../../assets/tile-view.svg';
 import { Card } from '../../components/card/card';
 import { Loader } from '../../components/loader/loader';
+import { Error } from '../../components/error/error';
 import { useFetchAllBooksQuery } from '../../redux/books-api';
 
 import style from './main-page.module.css';
-import { Error } from '../../components/error/error';
+import { useAppSelector } from '../../hooks/hooks';
 
 
 export const MainPage: FC = () => {
     const [view, setView] = useState<'tile' | 'list'>('tile')
     const [open, setOpen] = useState(false)
+    const {category} = useAppSelector(state => state.menu)
 
-    const {data: books, isFetching, isError, isSuccess} = useFetchAllBooksQuery()
+    const {data: books, isFetching, isError, isSuccess, refetch} = useFetchAllBooksQuery()
+
+    const filteredBooks = 
+        (category.path === 'all') 
+            ? books 
+            : books?.filter(book => book.categories.includes(category.name));
+
+    useEffect (() => {
+        refetch()
+    }, [refetch])
 
     return (
     <section className={style.mainPage}>
@@ -27,29 +38,29 @@ export const MainPage: FC = () => {
         {isSuccess && (
             <React.Fragment>
                 <div className={style.navList}>
-                <div className={style.searchWrap}>
-                    <div 
-                        className={cn(style.default, style.searchBar, {[style.opened]: open})} 
-                        aria-hidden={true}
-                    >   
-                        <button type='button' onClick={() => setOpen(true)} data-test-id='button-search-open'>
-                            <SearchIcon className={cn(style.searchIcon, {[style.opened]: open})} width={16} height={16}/>
-                        </button>
-                        <input 
-                            className={style.input} type="text" 
-                            placeholder='Поиск книги или автора…' 
-                            data-test-id='input-search'
-                        />
-                        <button type='button' onClick={() => setOpen(false)} data-test-id='button-search-close'>
-                            <CloseIcon className={style.closeIcon} width={16} height={16}/>
+                    <div className={style.searchWrap}>
+                        <div 
+                            className={cn(style.default, style.searchBar, {[style.opened]: open})} 
+                            aria-hidden={true}
+                        >   
+                            <button type='button' onClick={() => setOpen(true)} data-test-id='button-search-open'>
+                                <SearchIcon className={cn(style.searchIcon, {[style.opened]: open})} width={16} height={16}/>
+                            </button>
+                            <input 
+                                className={style.input} type="text" 
+                                placeholder='Поиск книги или автора…' 
+                                data-test-id='input-search'
+                            />
+                            <button type='button' onClick={() => setOpen(false)} data-test-id='button-search-close'>
+                                <CloseIcon className={style.closeIcon} width={16} height={16}/>
+                            </button>
+                        </div>
+                        <button type='button' className={cn(style.default, style.filterBtn)}>
+                            <FilterIcon className={style.filterIcon} width={16} height={16}/>
+                            По рейтингу
                         </button>
                     </div>
-                    <button type='button' className={cn(style.default, style.filterBtn)}>
-                        <FilterIcon className={style.filterIcon} width={16} height={16}/>
-                        По рейтингу
-                    </button>
-                </div>
-                <div className={style.btns}>
+                    <div className={style.btns}>
                     <button 
                         className={cn(style.default, style.viewBtn, {[style.activeBtn]: view === 'tile'})} 
                         type='button'
@@ -67,17 +78,20 @@ export const MainPage: FC = () => {
                     >
                         <ListView className={style.tileView} width={18} height={18}/>
                     </button>
+                    </div>
                 </div>
-            </div>
-            <div className={cn(style.cardList, {[style.horizontal]: view === 'list'})}>
-                {books.map(book => (
-                    <Card
-                        key={book.id}
-                        book={book}
-                        view={view}
-                    />
-                ))}
-            </div>
-        </React.Fragment>)}
+                <div className={cn(style.cardList, {[style.horizontal]: view === 'list'})}>
+                    {(filteredBooks && filteredBooks.length > 0) 
+                        ? filteredBooks?.map(book => (
+                        <Card
+                            key={book.id}
+                            book={book}
+                            view={view}
+                        />
+                        )) 
+                        : 'no books'}
+                </div>
+            </React.Fragment>
+        )}
     </section>
 )};

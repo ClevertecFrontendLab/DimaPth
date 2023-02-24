@@ -9,11 +9,11 @@ import { Button } from '../../components/button/button';
 import { Rating } from '../../components/rating/rating';
 import { Slider } from '../../components/slider/slider';
 import { Loader } from '../../components/loader/loader';
+import { Error } from '../../components/error/error';
 import { useFetchBookByIDQuery } from '../../redux/books-api';
+import { useAppSelector } from '../../hooks/hooks';
 
 import style from './book-page.module.css';
-import { Error } from '../../components/error/error';
-import { useAppSelector } from '../../hooks/hooks';
 
 export const BookPage: FC = () => {
     const [isOpen, setIsOpen] = useState(true)
@@ -27,9 +27,16 @@ export const BookPage: FC = () => {
     return (
     <section className={style.bookPage}>
         <div className={style.breadcrumbs}>
-            <span><Link to='/'>{breadcrumbsCat}</Link></span>
+            <span>
+                <Link 
+                    to={`/books/${breadcrumbsCat.path}`}
+                    data-test-id='breadcrumbs-link'
+                    >
+                    {breadcrumbsCat.name}
+                </Link>
+            </span>
             <span className={style.divider}>/</span>
-            <span>{data?.title}</span>
+            <span data-test-id='book-name'>{data?.title}</span>
         </div>
         {isFetching && <Loader />}
         {isError && <Error />}
@@ -39,7 +46,7 @@ export const BookPage: FC = () => {
                 <Slider images={data?.images}/>
                 <div>
                     <div className={style.info}>
-                        <h2 className={style.title}>{data.title}</h2>
+                        <h2 className={style.title} data-test-id='book-title'>{data.title}</h2>
                         <h3 className={style.subTitle}>{data.authors}</h3>
                         <div className={style.btn}>
                             <Button size='large'>Забронировать</Button> 

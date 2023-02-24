@@ -2,13 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 
 interface MenuState {
     isMenuOpen: boolean;
-    category: string;
+    category: {[key: string]: string};
 }
 
 
 const initialState: MenuState = {
     isMenuOpen: false,
-    category: 'Все книги'
+    category: {name: 'Все книги', path: 'all'}
 }
 
 export const menuSlice = createSlice({

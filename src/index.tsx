@@ -22,7 +22,6 @@ root.render(
           <Routes>
             <Route path='/' element={<Layout />}>
               <Route index={true} element={<MainPage />}/>
-              <Route path='/books/' element={<MainPage />}/>
               <Route path='/books/:category' element={<MainPage />}/>
               <Route path='/rules' element={<RulesPage />}/>
               <Route path='/contract' element={<ContractPage />}/>

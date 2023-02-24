@@ -20,6 +20,10 @@
     overflow: hidden;
 }
 
+.mainPage {
+    margin-bottom: 62px;
+}
+
 .navList {
     position: relative;
     display: flex;

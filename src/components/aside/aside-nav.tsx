@@ -5,7 +5,7 @@ import cn from 'classnames';
 import {ReactComponent as HideIcon} from '../../assets/hide-icon.svg';
 import {ReactComponent as ShowIcon} from '../../assets/show-icon.svg';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { useFetchCategoriesQuery } from '../../redux/books-api';
+import { useFetchAllBooksQuery, useFetchCategoriesQuery } from '../../redux/books-api';
 import { setCategory, setMenu } from '../../redux/slices/menu-slice';
 
 import style from './aside-nav.module.css';
@@ -20,10 +20,15 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
     const [tab, setTab] = useState('books');
     const [isOpen, setIsOpen] = useState(true);
 
-    const {data, isError, isLoading, isSuccess} = useFetchCategoriesQuery();
+    const {data: books} = useFetchAllBooksQuery()
+    const {data: categories, isError, isLoading, isSuccess} = useFetchCategoriesQuery();
 
     const {isMenuOpen, category} = useAppSelector(state => state.menu)
     const dispatch = useAppDispatch();
+
+    const values = categories?.map(item => (
+        books?.filter(book => book.categories.includes(item.name)).length
+    ))
 
     return (
         <React.Fragment>
@@ -55,34 +60,47 @@ const AsideNav: FC<AsideNavProps> = ({mobile}) => {
                     {isSuccess && 
                     <ul className={cn(style.categories, {[style.hidden]: !isOpen})}>
                         <li 
-                            className={cn({[style.active]: category === 'Все книги'})}
+                            className={cn({[style.active]: category.path === 'all'})}
                             data-test-id={mobile? 'burger-books' : 'navigation-books'}
                         >
                             <Link 
                                 to='/books/all'
                                 onClick={() => {
-                                    dispatch(setCategory('Все книги'))
+                                    dispatch(setCategory({name: 'Все книги', path: 'all'}))
                                     dispatch(setMenu(false))
                                 }}
                                 >
                                 <span className={style.category}>Все книги</span>
                             </Link>
                         </li>
-                        {data.map(item => (
+                        {categories.map((item, i) => (
                             <li 
                                 key={item.id}
-                                className={cn({[style.active]: category === item.name})} 
+                                className={cn({[style.active]: category.path === item.path})}
                                 >
                                 <Link 
                                     to={`/books/${item.path}`} 
                                     onClick={() => {
-                                        dispatch(setCategory(item.name))
+                                        dispatch(setCategory(item))
                                         dispatch(setMenu(false))
                                     }}
                                 >
-                                    <span className={style.category}>{item.name}</span>
+                                    <span 
+                                        className={style.category}
+                                        data-test-id={mobile ? `burger-${item.path}` : `navigation-${item.path}`}
+                                        >
+                                        {item.name}
+                                    </span>
                                     &nbsp;
-                                    <span className={style.count}>15</span>
+                                    <span 
+                                        className={style.count}
+                                        data-test-id={mobile 
+                                            ? `burger-book-count-for-${item.path}` 
+                                            : `navigation-book-count-for-${item.path}`
+                                            }
+                                        >
+                                        {values && values[i]}
+                                    </span>
                                 </Link>
                             </li>
                         ))}
