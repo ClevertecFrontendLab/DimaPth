@@ -66,16 +66,16 @@
     display: none;
 }
 
-.filterBtn {
+.sortBtn {
     padding: 10px 15px;
 }
 
-.filterIcon {
+.sortIcon {
     flex-shrink: 0;
     margin-right: 8px;
 }
 
-.btns {
+.viewBtns {
     display: flex;
     align-items: flex-start;
     gap: 16px;
@@ -177,7 +177,7 @@
     .searchIcon.opened {
         display: none;
     }
-    .filterBtn {
+    .sortBtn {
         width: 32px;
         height: 32px;
         padding: 8px;
