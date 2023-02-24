@@ -37,7 +37,7 @@ export const Card: FC<CardProps> = ({book, view}) => {
             </div>
             <div className={cn(style.body, {[style.horizontal]: view === 'list'})}>
                 <div className={cn(style.rating, {[style.visible]: view === 'tile'})}>
-                    {book.rating ? (
+                    {book.rating !== null ? (
                         <Rating rating={book.rating}/>
                     ) : (
                         <p className={style.ghost}>ещё нет оценок</p>

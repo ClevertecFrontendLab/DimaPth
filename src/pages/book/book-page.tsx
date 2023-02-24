@@ -66,7 +66,7 @@ export const BookPage: FC = () => {
                 <h3 className={style.title}>Рейтинг</h3>
                 <div className={style.wrap}>
                     <Rating rating={data.rating || 0} size='large' />
-                    {data.rating ? <span>{data.rating}</span> : 'ещё нет оценок'}
+                    {data.rating !== null ? <span>{data.rating}</span> : 'ещё нет оценок'}
                 </div>
             </div>
             <div className={style.details}>
