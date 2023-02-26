@@ -11,7 +11,6 @@
     display: flex;
     justify-content: space-between;
     flex: 1 1 auto;
-    margin-bottom: 62px;
 }
 
 @media screen and (max-width: 1400px) {

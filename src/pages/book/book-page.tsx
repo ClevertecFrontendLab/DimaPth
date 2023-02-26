@@ -9,27 +9,34 @@ import { Button } from '../../components/button/button';
 import { Rating } from '../../components/rating/rating';
 import { Slider } from '../../components/slider/slider';
 import { Loader } from '../../components/loader/loader';
+import { Error } from '../../components/error/error';
 import { useFetchBookByIDQuery } from '../../redux/books-api';
+import { useAppSelector } from '../../hooks/hooks';
 
 import style from './book-page.module.css';
-import { Error } from '../../components/error/error';
-import { useAppSelector } from '../../hooks/hooks';
 
 export const BookPage: FC = () => {
     const [isOpen, setIsOpen] = useState(true)
 
-    const {category, bookId} = useParams<{category?: string, bookId?: string}>();
+    const {bookId} = useParams<{bookId?: string}>();
     
-    const {category: breadcrumbsCat} = useAppSelector(state => state.menu)
+    const {category} = useAppSelector(state => state.menu)
 
     const {data, isFetching, isError, isSuccess} = useFetchBookByIDQuery(bookId)
     
     return (
     <section className={style.bookPage}>
         <div className={style.breadcrumbs}>
-            <span><Link to='/'>{breadcrumbsCat}</Link></span>
+            <span>
+                <Link 
+                    to={`/books/${category.path}`}
+                    data-test-id='breadcrumbs-link'
+                    >
+                    {category.name}
+                </Link>
+            </span>
             <span className={style.divider}>/</span>
-            <span>{data?.title}</span>
+            <span data-test-id='book-name'>{isSuccess && data.title}</span>
         </div>
         {isFetching && <Loader />}
         {isError && <Error />}
@@ -37,9 +44,9 @@ export const BookPage: FC = () => {
             <React.Fragment>
             <div className={style.main}>
                 <Slider images={data?.images}/>
-                <div>
+                <div className={style.content}>
                     <div className={style.info}>
-                        <h2 className={style.title}>{data.title}</h2>
+                        <h2 className={style.title} data-test-id='book-title'>{data.title}</h2>
                         <h3 className={style.subTitle}>{data.authors}</h3>
                         <div className={style.btn}>
                             <Button size='large'>Забронировать</Button> 
@@ -59,7 +66,7 @@ export const BookPage: FC = () => {
                 <h3 className={style.title}>Рейтинг</h3>
                 <div className={style.wrap}>
                     <Rating rating={data.rating || 0} size='large' />
-                    {data.rating ? <span>{data.rating}</span> : 'ещё нет оценок'}
+                    {data.rating !== null ? <span>{data.rating}</span> : 'ещё нет оценок'}
                 </div>
             </div>
             <div className={style.details}>
@@ -90,7 +97,7 @@ export const BookPage: FC = () => {
                     <div className={style.column}>
                         <div className={style.item}>
                             <div>Жанр</div>
-                            <div>{category}</div>
+                            <div>{data.categories.join(', ')}</div>
                         </div>
                         <div className={style.item}>
                             <div>Вес</div>

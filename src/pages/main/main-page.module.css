@@ -20,6 +20,11 @@
     overflow: hidden;
 }
 
+.mainPage {
+    min-height: 100vh;
+    margin-bottom: 62px;
+}
+
 .navList {
     position: relative;
     display: flex;
@@ -39,7 +44,7 @@
 }
 .searchBar > button {
     height: 16px;
-}    
+}
 
 .searchIcon {
     fill: #A7A7A7;
@@ -48,13 +53,18 @@
     margin-right: 8px;
 }
 
-.input {
+.focus {
+    fill: #F83600;
+}
+
+.searchBar .input {
+    caret-color: #F83600;
     width: 100%;
     border: none;
     outline: none;
 }
 
-.input::placeholder {
+.searchBar .input::placeholder {
     color: #A7A7A7;
 }
 
@@ -62,16 +72,16 @@
     display: none;
 }
 
-.filterBtn {
+.sortBtn {
     padding: 10px 15px;
 }
 
-.filterIcon {
+.sortIcon {
     flex-shrink: 0;
     margin-right: 8px;
 }
 
-.btns {
+.viewBtns {
     display: flex;
     align-items: flex-start;
     gap: 16px;
@@ -111,6 +121,16 @@
     gap: 24px 21.5px;
 }
 
+.notFound {
+    width: 100%;
+    margin-top: 200px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+    color: #A7A7A7;
+}
+
 .horizontal {
     gap: 16px;
 }
@@ -129,6 +149,9 @@
     .cardList {
         width: 640px;
         gap: 32px 35px;
+    }
+    .notFound {
+        margin-top: 226px;
     }
 }
 
@@ -150,9 +173,6 @@
         width: 32px;
         padding: 8px 0;
     }
-    .searchBar .input {
-        caret-color: #F83600;
-    }
     .searchBar button {
         display: flex;
         align-items: center;
@@ -173,7 +193,7 @@
     .searchIcon.opened {
         display: none;
     }
-    .filterBtn {
+    .sortBtn {
         width: 32px;
         height: 32px;
         padding: 8px;
@@ -181,5 +201,10 @@
     .cardList {
         width: 100%;
         gap: 16px 0;
+    }
+    .notFound {
+        font-size: 18px;
+        line-height: 28px;
+        margin-top: 137px;
     }
 }
