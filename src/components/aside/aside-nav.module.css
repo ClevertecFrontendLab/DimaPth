@@ -80,6 +80,11 @@
     margin-bottom: 16px;
 }
 
+.categories a {
+    display: block;
+    width: 100%;
+}
+
 .count {
     color: #A7A7A7;
     font-size: 14px;
