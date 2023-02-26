@@ -9,13 +9,15 @@ import { Rating } from '../rating/rating';
 
 import style from './card.module.css'
 import { useAppSelector } from '../../hooks/hooks';
+import { Highlight } from '../highlight/highlight';
 
 interface CardProps {
     book: IBooks;
     view: 'tile' | 'list';
+    search: string;
 }
 
-export const Card: FC<CardProps> = ({book, view}) => {
+export const Card: FC<CardProps> = ({book, view, search}) => {
     const {category} = useAppSelector(state => state.menu)
 
     return (
@@ -43,7 +45,9 @@ export const Card: FC<CardProps> = ({book, view}) => {
                         <p className={style.ghost}>ещё нет оценок</p>
                     )}
                 </div>
-                <h2 className={cn(style.title, {[style.horizontal]: view === 'list'})}>{book.title}</h2>
+                <h2 className={cn(style.title, {[style.horizontal]: view === 'list'})}>
+                    <Highlight key={book.id} text={book.title} search={search}/>
+                </h2>
                 <p className={cn(style.ghost, {[style.horizontal]: view === 'list'})}>
                     {book.authors.length > 1 
                         ? book.authors.map(author => `${author}, `)
