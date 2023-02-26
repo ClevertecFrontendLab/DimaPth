@@ -20,10 +20,17 @@ import { IBooks } from '../../types/books';
 export const MainPage: FC = () => {
     const [view, setView] = useState<'tile' | 'list'>('tile')
     const [open, setOpen] = useState(false)
+    const [focus, setFocus] = useState(false)
     const [ascending, setAscending] = useState(false)
+    const [searchBook, setSearchBook] = useState('')
     const {category} = useAppSelector(state => state.menu)
 
     const {data: books, isFetching, isError, isSuccess, refetch} = useFetchAllBooksQuery()
+    
+    useEffect (() => {
+        refetch()
+    }, [refetch])
+
 
     const sortByRating = (asc: boolean) => ((a:IBooks, b:IBooks) => {
         const nullPos = asc ? 1 : -1
@@ -51,9 +58,8 @@ export const MainPage: FC = () => {
             ? sortedBooks 
             : sortedBooks?.filter(book => book.categories.includes(category.name));
 
-    useEffect (() => {
-        refetch()
-    }, [refetch])
+    const booksByTitle = 
+        filteredBooks?.filter(book => book.title.toLocaleLowerCase().includes(searchBook.toLocaleLowerCase()));
 
     return (
     <section className={style.mainPage}>
@@ -68,9 +74,17 @@ export const MainPage: FC = () => {
                             aria-hidden={true}
                         >   
                             <button type='button' onClick={() => setOpen(true)} data-test-id='button-search-open'>
-                                <SearchIcon className={cn(style.searchIcon, {[style.opened]: open})} width={16} height={16}/>
+                                <SearchIcon 
+                                    className={cn(style.searchIcon, {[style.opened]: open, [style.focus]: focus})} 
+                                    width={16} 
+                                    height={16}
+                                />
                             </button>
-                            <input 
+                            <input
+                                value={searchBook}
+                                onChange={(e) => setSearchBook(e.target.value)}
+                                onFocus={() => {setFocus(true)}}
+                                onBlur={() => setFocus(false)}
                                 className={style.input} type="text" 
                                 placeholder='Поиск книги или автора…' 
                                 data-test-id='input-search'
@@ -83,6 +97,7 @@ export const MainPage: FC = () => {
                             type='button' 
                             className={cn(style.default, style.sortBtn)}
                             onClick={() => setAscending(!ascending)}
+                            data-test-id='sort-rating-button'
                             >   
                                 {ascending 
                                     ? <SortDownIcon className={style.sortIcon} width={16} height={16}/>
@@ -112,15 +127,19 @@ export const MainPage: FC = () => {
                     </div>
                 </div>
                 <div className={cn(style.cardList, {[style.horizontal]: view === 'list'})}>
-                    {(filteredBooks && filteredBooks.length > 0) 
-                        ? filteredBooks?.map(book => (
+                    {(booksByTitle && booksByTitle.length > 0) 
+                        ? booksByTitle?.map(book => (
                         <Card
                             key={book.id}
                             book={book}
                             view={view}
+                            search={searchBook}
                         />
                         )) 
-                        : 'no books'}
+                        : filteredBooks?.length === 0 
+                            ? <p className={style.notFound} data-test-id='empty-category'>В этой категории книг ещё нет</p> 
+                            : <p className={style.notFound} data-test-id='search-result-not-found'>По запросу ничего не найдено</p>
+                        }
                 </div>
             </React.Fragment>
         )}

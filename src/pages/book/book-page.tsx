@@ -36,7 +36,7 @@ export const BookPage: FC = () => {
                 </Link>
             </span>
             <span className={style.divider}>/</span>
-            <span data-test-id='book-name'>{data?.title}</span>
+            <span data-test-id='book-name'>{isSuccess && data.title}</span>
         </div>
         {isFetching && <Loader />}
         {isError && <Error />}
@@ -44,7 +44,7 @@ export const BookPage: FC = () => {
             <React.Fragment>
             <div className={style.main}>
                 <Slider images={data?.images}/>
-                <div>
+                <div className={style.content}>
                     <div className={style.info}>
                         <h2 className={style.title} data-test-id='book-title'>{data.title}</h2>
                         <h3 className={style.subTitle}>{data.authors}</h3>
