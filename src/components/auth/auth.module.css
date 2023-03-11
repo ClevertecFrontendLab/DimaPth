@@ -1,0 +1,116 @@
+.auth {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+}
+
+.auth h1 {
+    color: #fff;
+    margin-bottom: 46px;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+}
+
+.form {
+    width: 530px;
+    display: flex;
+    flex-direction: column;
+    padding: 48px 56px;
+    background-color: #fff;
+    border-radius: 16px;
+}
+
+.titles {
+    color: #363636;
+    margin-bottom: 32px;
+}
+.titles .title {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+    margin-bottom: 8px;
+}
+.titles .step {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.inputWrap {
+    margin-bottom: 32px;
+}
+
+.inputContainer {
+    position: relative;
+    width: 100%;
+    margin-bottom: 18px;
+}
+.inputContainer input {
+    font-size: 14px;
+    line-height: 18px;
+    color: #363636;
+    position: relative;
+    width: 100%;
+    outline: 0;
+    border: none;
+    border-bottom: 1px solid #BFC4C9;
+    width: 100%;
+    padding: 26px 12px 12px;
+}
+.inputContainer.error input {
+    border-bottom: 1px solid #F42C4F;
+}
+.inputContainer label {
+    font-size: 14px;
+    line-height: 18px;
+    color: #363636;
+    pointer-events: none;
+    position: absolute;
+    transition: all 200ms;
+    top: 19px;
+    left: 12px;
+}
+.inputContainer input:focus + label,
+.inputContainer input:not(:placeholder-shown) + label{
+    color: #A7A7A7;
+    top: 6px;
+    font-size: 12px;
+    line-height: 16px;
+}
+.inputContainer .successIcon {
+    display: none;
+    position: absolute;
+    top: 16px;
+    right: 44px;
+}
+.inputContainer .successIcon.visible {
+    display: block;
+}
+.inputContainer .eyeBtn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+.inputContainer .hint {
+    height: 16px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: #A7A7A7;
+    padding-left: 12px;
+}
+.inputContainer .hint.error {
+    color: #F42C4F;
+}
+.error {
+    color: #F42C4F;
+}
+
+.form > button {
+    margin-bottom: 16px;
+}
